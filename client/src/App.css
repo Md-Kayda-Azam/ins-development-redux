@@ -1,0 +1,326 @@
+@font-face {
+  font-family: "Segoe UI Light";
+  src: local("Segoe UI Light"),
+    url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.woff2)
+      format("woff2"),
+    url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.woff)
+      format("woff"),
+    url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.ttf)
+      format("truetype");
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: "Segoe UI Light";
+  src: local("Segoe UI Semilight"),
+    url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semilight/latest.woff2)
+      format("woff2"),
+    url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semilight/latest.woff)
+      format("woff"),
+    url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semilight/latest.ttf)
+      format("truetype");
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: "Segoe UI Light";
+  src: local("Segoe UI"),
+    url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.woff2)
+      format("woff2"),
+    url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.woff)
+      format("woff"),
+    url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.ttf)
+      format("truetype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: SegoeUI;
+  src: local("Segoe UI Light"),
+    url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.woff2)
+      format("woff2"),
+    url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.woff)
+      format("woff"),
+    url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.ttf)
+      format("truetype");
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: SegoeUI;
+  src: local("Segoe UI Semilight"),
+    url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semilight/latest.woff2)
+      format("woff2"),
+    url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semilight/latest.woff)
+      format("woff"),
+    url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semilight/latest.ttf)
+      format("truetype");
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: SegoeUI;
+  src: local("Segoe UI"),
+    url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.woff2)
+      format("woff2"),
+    url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.woff)
+      format("woff"),
+    url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.ttf)
+      format("truetype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: SegoeUI;
+  src: local("Segoe UI Semibold"),
+    url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semibold/latest.woff2)
+      format("woff2"),
+    url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semibold/latest.woff)
+      format("woff"),
+    url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semibold/latest.ttf)
+      format("truetype");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: SegoeUI;
+  src: local("Segoe UI Bold"),
+    url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/bold/latest.woff2)
+      format("woff2"),
+    url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/bold/latest.woff)
+      format("woff"),
+    url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/bold/latest.ttf)
+      format("truetype");
+  font-weight: 700;
+}
+
+/**
+ * Basic Reseting code   
+**/
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI Light";
+}
+
+html {
+  overflow-y: scroll;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+input:focus {
+  outline: none;
+}
+
+li {
+  list-style: none;
+}
+ul {
+  margin-bottom: 0px;
+}
+
+/**
+ * Create custom css property
+**/
+._aa4c {
+  --base-unit: 4px;
+  --blue-2: #b3dbff;
+  --blue-4: #47afff;
+  --blue-5: #0095f6;
+  --blue-6: #0074cc;
+  --blue-7: #0057a3;
+  --blue-9: #002952;
+  --challenge-link: 54, 54, 54;
+  --clr-separator: #efefef;
+  --clr_red_dark_30: #af2634;
+  --creation-header-height: 43px;
+  --creation-min-padding-x: 32px;
+  --creation-modal-max-height: 898px;
+  --creation-modal-min-height: 391px;
+  --creation-padding-x: 64px;
+  --creation-padding-y: 112px;
+  --creation-settings-width: 340px;
+  --cyan-5: #27c4f5;
+  --desktop-center-feed-min-width-breakpoint: 1500px;
+  --desktop-collapsed-nav-height: 52px;
+  --desktop-grid-item-margin: 28px;
+  --desktop-in-feed-story-item-height: 208px;
+  --desktop-in-feed-story-item-width: 116px;
+  --desktop-nav-anim-duration: 0.2s;
+  --desktop-nav-search-box-large-width: 268px;
+  --desktop-nav-search-box-width: 215px;
+  --desktop-regular-nav-height: 77px;
+  --direct-attachment-image-grid-border-size: 1px;
+  --direct-attachment-image-grid-item-size: 78px;
+  --direct-attachment-story-height: 150px;
+  --direct-attachment-story-large-height: 256px;
+  --direct-attachment-story-large-width: 164px;
+  --direct-attachment-story-width: 84px;
+  --direct-message-margin: 8px;
+  --direct-message-max-width: 236px;
+  --docpen-lightgrey: 243, 243, 243;
+  --fb-connect-blue: #4f67b0;
+  --fb-signup-page-profile-pic-size: 88px;
+  --feed-sidebar-padding: 32px;
+  --feed-sidebar-width: 319px;
+  --font-family-system: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  --font-weight-system-bold: 700;
+  --font-weight-system-extra-bold: 800;
+  --font-weight-system-extra-light: 200;
+  --font-weight-system-light: 300;
+  --font-weight-system-medium: 500;
+  --font-weight-system-regular: 400;
+  --font-weight-system-semibold: 600;
+  --gradient-lavender: #d300c5;
+  --gradient-orange: #ff7a00;
+  --gradient-pink: #ff0169;
+  --gradient-purple: #7638fa;
+  --gradient-yellow: #ffd600;
+  --green-4: #78de45;
+  --green-5: #58c322;
+  --green-6: #37a600;
+  --grey-0: #f5f5f5;
+  --grey-1: #efefef;
+  --grey-2: #dbdbdb;
+  --grey-4: #a8a8a8;
+  --grey-5: #8e8e8e;
+  --grey-6: #737373;
+  --grey-8: #363636;
+  --grey-9: #262626;
+  --hscc-collapse-transition-duration: 0.3s;
+  --ig-badge: 255, 48, 64;
+  --ig-banner-background: 255, 255, 255;
+  --ig-close-friends-refreshed: 28, 209, 79;
+  --ig-disabled-action-text: 169, 219, 255;
+  --ig-elevated-background: 255, 255, 255;
+  --ig-elevated-separator: 219, 219, 219;
+  --ig-error-or-destructive: 237, 73, 86;
+  --ig-facebook-blue: 53, 121, 234;
+  --ig-focus-stroke: 168, 168, 168;
+  --ig-full-screen-background: 54, 54, 54;
+  --ig-highlight-background: 239, 239, 239;
+  --ig-letterbox: 255, 255, 255;
+  --ig-link: 0, 55, 107;
+  --ig-live-badge: 255, 1, 105;
+  --ig-primary-background: 255, 255, 255;
+  --ig-primary-button: 0, 149, 246;
+  --ig-primary-button-hover: 24, 119, 242;
+  --ig-primary-text: 38, 38, 38;
+  --ig-secondary-background: 250, 250, 250;
+  --ig-secondary-button: 38, 38, 38;
+  --ig-secondary-button-background: 239, 239, 239;
+  --ig-secondary-button-hover: 219, 219, 219;
+  --ig-secondary-button-focused: 224, 241, 255;
+  --ig-tertiary-button-background: 255, 255, 255;
+  --ig-tertiary-button-border: 219, 219, 219;
+  --ig-tertiary-button-hover: 245, 245, 245;
+  --ig-tertiary-button-text: 38, 38, 38;
+  --ig-secondary-text: 142, 142, 142;
+  --ig-separator: 219, 219, 219;
+  --ig-stroke: 219, 219, 219;
+  --ig-subscribers-only: 118, 56, 250;
+  --ig-success: 88, 195, 34;
+  --ig-temporary-highlight: 245, 251, 255;
+  --ig-tertiary-text: 199, 199, 199;
+  --ig-text-on-color: 255, 255, 255;
+  --ig-text-on-media: 255, 255, 255;
+  --in-feed-story-item-height: 240px;
+  --in-feed-story-item-width: 135px;
+  --input-border-radius: 6px;
+  --large-layout-min: 1500px;
+  --like-animation-duration: 1000ms;
+  --live-video-border-radius: 4px;
+  --live-video-right-col-width: 336px;
+  --media-info: 335px;
+  --medium-layout-max: 1499px;
+  --medium-layout-min: 1080px;
+  --mobile-grid-item-margin: 2px;
+  --mobile-nav-height: 45px;
+  --modal-backdrop-dark: rgba(0, 0, 0, 0.85);
+  --modal-backdrop-default: rgba(0, 0, 0, 0.65);
+  --modal-border-radius: 12px;
+  --modal-padding: 16px;
+  --modal-z-index: 100;
+  --nav-narrow-width: 72px;
+  --nav-medium-width: 244px;
+  --nav-wide-width: 335px;
+  --orange-5: #fd8d32;
+  --photo: 600px;
+  --pink-5: #d10869;
+  --post-separator: 239, 239, 239;
+  --post-step-indicator: 168, 168, 168;
+  --purple-5: #a307ba;
+  --red-4: #ff6874;
+  --red-5: #ed4956;
+  --red-6: #c62330;
+  --red-7: #a70311;
+  --refinement-section-height: 50px;
+  --revamp-nav-bottom-toolbar-height: 50px;
+  --revamp-feed-card-max-height: 758px;
+  --revamp-feed-card-min-height: 615px;
+  --revamp-feed-card-min-width: 710px;
+  --revamp-feed-card-media-min-width: 390px;
+  --revamp-feed-card-details-section-width: 320px;
+  --revamp-feed-card-details-section-width-xl: 340px;
+  --revamp-feed-card-details-section-padding: 20px;
+  --revamp-feed-card-dense-padding: 16px;
+  --revamp-feed-horizontal-padding-small-screen: 24px;
+  --revamp-feed-horizontal-padding-large-screen: 32px;
+  --revamp-feed-vertical-padding: 32px;
+  --right-rail-width: 352px;
+  --nav-wide-screen-min: 1920px;
+  --scrollable-content-header-height-med: 49px;
+  --scrollable-content-header-height: 44px;
+  --search-box-height: 40px;
+  --search-modal-height-expanded: 450px;
+  --search-modal-height: 362px;
+  --search-modal-top-offset: 12px;
+  --search-result-height: 50px;
+  --search-result-inline-top-offset: 60px;
+  --search-result-list-width: 375px;
+  --small-layout-max: 1079px;
+  --small-layout-min: 800px;
+  --story-cube-shading-duration: 200ms;
+  --story-gallery-preview-scale-correction: 2.5;
+  --story-progressbar-update-tick: 0.1s;
+  --story-swap-animation-duration: 350ms;
+  --system-10-font-size: 10px;
+  --system-10-line-height: 12px;
+  --system-11-font-size: 11px;
+  --system-11-line-height: 13px;
+  --system-12-font-size: 12px;
+  --system-12-line-height: 16px;
+  --system-14-font-size: 14px;
+  --system-14-line-height: 18px;
+  --system-16-font-size: 16px;
+  --system-16-line-height: 24px;
+  --system-18-font-size: 18px;
+  --system-18-line-height: 24px;
+  --system-20-line-height: 25px;
+  --system-22-font-size: 22px;
+  --system-22-line-height: 26px;
+  --system-24-font-size: 24px;
+  --system-24-line-height: 27px;
+  --system-26-font-size: 26px;
+  --system-26-line-height: 28px;
+  --system-28-font-size: 28px;
+  --system-28-line-height: 32px;
+  --system-32-font-size: 32px;
+  --system-32-line-height: 40px;
+  --tos-box-shadow: 0, 0, 0;
+  --web-always-black: 0, 0, 0;
+  --web-always-white: 255, 255, 255;
+  --web-overlay-on-media: 38, 38, 38;
+  --web-secondary-action: 224, 241, 255;
+  --yellow-5: #fdcb5c;
+}

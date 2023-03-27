@@ -1,0 +1,106 @@
+.ins-profile {
+  overflow-x: hidden;
+  .profile-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 104px;
+    width: 100%;
+    margin-left: 160px;
+    .profile-info {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 24px;
+
+      .info-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+
+        button.edit-btn {
+          border: none;
+          background-color: #efefef;
+          width: 106px;
+          height: 31px;
+          border-radius: 10px;
+          cursor: pointer;
+          color: #000;
+          font-weight: 500;
+        }
+        button.edit-btn:hover {
+          background-color: #d1cfcf;
+        }
+        span {
+          font-size: 17px;
+          font-weight: 400;
+        }
+      }
+      .info-item-info {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        gap: 39px;
+        p {
+          font-size: 14px;
+          b {
+            color: #6a6666;
+          }
+        }
+      }
+      .info-item-name {
+        font-size: 13px;
+        font-weight: 500;
+      }
+    }
+    img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin-top: 30px;
+    }
+  }
+  .profile-body {
+    margin-top: 37px;
+    border-top: 1px solid #ddd;
+    width: 935px;
+    margin-left: 91px;
+    .menu-item {
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 61px;
+      margin: 16px 323px;
+      .item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        span {
+          font-size: 13px;
+          font-weight: 300;
+          font-family: inherit;
+        }
+      }
+    }
+    .photo-item {
+      width: 930px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      .photo {
+        img {
+          width: 300px;
+          height: 300px;
+          padding: 14px;
+        }
+      }
+    }
+  }
+}

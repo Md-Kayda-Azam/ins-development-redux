@@ -1,0 +1,32 @@
+.auth-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-self: flex-end;
+  margin-bottom: 50px;
+  ul {
+    display: flex;
+    gap: 8px;
+
+    li {
+      a {
+        text-decoration: none;
+        font-size: 12px;
+        color: #8e8e8e;
+        font-weight: 400;
+      }
+    }
+  }
+
+  .copy-right-area {
+    display: flex;
+    font-size: 12px;
+    color: #8e8e8e;
+
+    select {
+      border: none;
+      color: #8e8e8e;
+      gap: 12px;
+    }
+  }
+}

@@ -1,0 +1,26 @@
+.ins-story {
+  padding: 10px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  margin-top: 80px;
+  .story-wraper {
+    width: 500px;
+    height: 105px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    gap: 10px;
+    .story {
+      img {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        border: 2px solid rgb(201, 119, 81);
+      }
+    }
+  }
+}

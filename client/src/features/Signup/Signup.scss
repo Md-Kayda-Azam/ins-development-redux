@@ -1,0 +1,13 @@
+a.login-submit {
+  padding: 4px 101px;
+}
+.go-back {
+  button {
+    border: none;
+    cursor: pointer;
+    color: #0095f6;
+    &:hover {
+      color: black;
+    }
+  }
+}

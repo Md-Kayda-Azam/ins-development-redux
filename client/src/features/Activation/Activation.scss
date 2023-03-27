@@ -1,0 +1,78 @@
+form.from-in {
+  display: flex;
+  width: 100%;
+  padding: 0px 30px;
+  justify-content: center;
+  align-items: center;
+  gap: 31px;
+  input[type="text"] {
+    width: 80%;
+    border: 1px solid #ddd;
+    padding: 5px;
+    width: 80%;
+  }
+  button.login-submit-k {
+    width: 80%;
+    height: 30px;
+    margin-bottom: 10px;
+    border: none;
+    text-align: center;
+    font-weight: 500;
+    background-color: #4cb5f9;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  button.login-submit-ins {
+    cursor: no-drop;
+  }
+}
+p.invalid-code {
+  color: #e93333;
+  font-size: 13px;
+  width: 72%;
+  text-align: center;
+}
+.number-and-code-request {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin-top: 10px;
+  button {
+    font-size: 12px;
+    color: #0095f6;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+  }
+}
+
+button.backBtn {
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transform: translate(-128px, 10px);
+  color: #0095f6;
+  &:hover {
+    color: #000;
+  }
+}
+p.code-send {
+  font-size: 12px;
+}
+span.ksss {
+  font-size: 13px;
+  width: 106%;
+  display: flex;
+  gap: 5px;
+}
+span.resend-code-ins {
+  font-size: 13px;
+}
+button.resend-code {
+  border: none;
+  color: #4cb5f9;
+  cursor: pointer;
+}

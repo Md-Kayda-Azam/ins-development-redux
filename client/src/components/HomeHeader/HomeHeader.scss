@@ -1,0 +1,264 @@
+.ins-header {
+  flex: 1 1;
+  width: 244px;
+  height: 612px;
+  padding: 0px 0px 4px 14px;
+  gap: 25px;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  border-right: 1px solid #ddd;
+  margin-top: 10px;
+  .ins-hearder-wraper {
+    .ins-icon {
+      position: absolute;
+      background-color: #fff;
+      left: 10px;
+      width: 60px;
+      top: 10px;
+      .instagram-icon {
+        top: 14px;
+        left: 18px;
+        width: 48px;
+        height: 61px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #fff;
+      }
+    }
+    .header-logo {
+      margin-top: 20px;
+      margin-bottom: 25px;
+      margin-left: 5px;
+    }
+    .header-menu {
+      width: 100%;
+      height: auto;
+      margin-bottom: 20px;
+      margin-top: 12px;
+
+      ul {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+        li {
+          display: flex;
+          justify-content: flex-start;
+          align-items: flex-start;
+          width: 100%;
+          cursor: pointer;
+          padding: 6px 0px;
+          a.activeBtn {
+            font-weight: 900 !important;
+          }
+          a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            font-weight: 300;
+            .active-option {
+              border-radius: 50%;
+              width: 42px;
+              height: 42px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+            .activeShow {
+              border-radius: 50%;
+              width: 42px;
+              height: 42px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              border: 1px solid #ddd;
+            }
+
+            img {
+              width: 25px;
+              height: 25px;
+              border-radius: 50%;
+            }
+          }
+        }
+        li:hover svg {
+          transform: scale(1.1);
+        }
+      }
+    }
+    .search-bar {
+      position: absolute;
+      bottom: 0px;
+      width: 400px;
+      height: 100vh;
+      left: 65px;
+      background-color: #ffffff;
+      box-shadow: 5px -3px 5px 0px rgb(0 0 0 / 10%);
+      border-radius: 0px 20px 20px 0px;
+      .search-area {
+        width: 100%;
+        height: 150px;
+        border-bottom: 1px solid #ddd;
+        .sear-title {
+          display: flex;
+          justify-content: center;
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 20px;
+          padding: 40px 33px;
+          span {
+            font-size: 23px;
+            font-weight: 500;
+            font-family: inherit;
+          }
+          input[type="text"] {
+            outline: none;
+            border: none;
+            width: 359px;
+            height: 36px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 200;
+            box-sizing: border-box;
+            background-color: #efefef;
+            background-image: url("https://www.w3schools.com/css/searchicon.png");
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            padding: 12px 20px 12px 40px;
+          }
+          .search-option {
+            top: 93px;
+            position: absolute;
+            z-index: 99999999;
+            left: 39px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            div {
+              font-size: 16px;
+              font-weight: 200;
+            }
+          }
+          .search-text {
+            position: absolute;
+            display: flex;
+            /* justify-content: space-between; */
+            align-items: center;
+            width: 100%;
+            top: 89px;
+            gap: 20px;
+          }
+          .clear {
+            position: absolute;
+            display: flex;
+            /* justify-content: space-between; */
+            align-items: center;
+            width: 100%;
+            top: 89px;
+            gap: 20px;
+          }
+        }
+      }
+      .search-ouput {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    .notification-bar {
+      position: absolute;
+      bottom: 0px;
+      width: 400px;
+      height: 100vh;
+      left: 64px;
+      background-color: #ffffff;
+      box-shadow: 5px -3px 5px 0px rgb(0 0 0 / 10%);
+      border-radius: 0px 20px 20px 0px;
+
+      .notification-area {
+        overflow: auto;
+        height: 628px;
+        margin-left: 32px;
+        margin-top: 5px;
+
+        .notification-title {
+          width: 100%;
+          height: 54px;
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          margin-top: 8px;
+          span {
+            font-size: 23px;
+            font-weight: 600;
+            font-family: inherit;
+          }
+        }
+        .today-notification {
+          width: 100%;
+          height: auto;
+          border-bottom: 1px solid #ddd;
+          span {
+            font-size: 14px;
+            font-weight: 700;
+          }
+        }
+        .week-notification {
+          width: 100%;
+          height: auto;
+          border-bottom: 1px solid #ddd;
+          span {
+            font-size: 16px;
+            font-weight: 700;
+          }
+        }
+        .month-notification {
+          width: 100%;
+          height: auto;
+          border-bottom: 1px solid #ddd;
+          span {
+            font-size: 16px;
+            font-weight: 700;
+          }
+        }
+      }
+    }
+    .header-more {
+      position: absolute;
+      width: 240px;
+      height: 310px;
+      bottom: 83px;
+      left: 0px;
+      .more-wraper {
+        padding: 0px 10px;
+        background-color: rgb(255, 255, 255);
+        width: 258px;
+        ul {
+          display: flex;
+          justify-content: center;
+          align-items: flex-start;
+          flex-direction: column;
+          li {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            align-items: center;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 1px solid #ddd;
+            p {
+              font-size: 14px;
+              font-weight: 400;
+              color: #555555;
+            }
+          }
+        }
+      }
+    }
+  }
+}

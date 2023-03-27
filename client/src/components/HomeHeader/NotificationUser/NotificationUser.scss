@@ -1,0 +1,72 @@
+.today-notification {
+  margin-top: 10px;
+}
+.week-notification {
+  margin-top: 10px;
+}
+.month-notification {
+  margin-top: 10px;
+}
+
+.user {
+  width: 100%;
+  margin-top: 20px;
+  .user-item {
+    width: 100%;
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .info {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      .info-others {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0px;
+        p {
+          font-size: 13px;
+          font-family: inherit;
+          font-weight: 500;
+        }
+        .follow {
+          font-size: 14px;
+          font-weight: 300;
+        }
+      }
+
+      img {
+        width: 44px;
+        height: 45px;
+        border-radius: 50%;
+      }
+    }
+    button {
+      width: 115px;
+      height: 32px;
+      margin-right: 27px;
+      border: none;
+      cursor: pointer;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      font-family: inherit;
+    }
+    button:hover {
+      background-color: #e0e0e0;
+    }
+    button.follow-btn {
+      width: 80px !important;
+      background: #0095f6;
+      color: #fff;
+    }
+    button.follow-btn:hover {
+      background: #0d88da;
+    }
+  }
+}

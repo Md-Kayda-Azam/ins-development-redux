@@ -1,0 +1,151 @@
+.post-card {
+  background-color: #fff;
+  margin: 30px 0px;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .post-card-header {
+    width: 500px;
+    height: 56px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+
+    .post-user-info {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      img {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+      }
+
+      .user-details {
+        display: flex;
+        flex-direction: column;
+        margin-left: 10px;
+
+        a {
+          text-decoration: none;
+          font-size: 14px;
+          font-weight: 700;
+          color: #000;
+        }
+
+        .location {
+          font-size: 14px;
+          font-weight: 300;
+        }
+      }
+    }
+
+    .post-opt-btn {
+      button {
+        border: none;
+        background-color: transparent;
+      }
+    }
+  }
+  .post-img {
+    img {
+      width: 500px;
+    }
+  }
+  .timeline-icons {
+    display: flex;
+    width: 500px;
+    justify-content: space-between;
+    padding: 8px 10px;
+    align-items: center;
+    font-size: 25px;
+
+    .icons-left {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+
+      a {
+        color: #000;
+
+        &:hover {
+          color: #ccc;
+        }
+      }
+    }
+
+    .icon-right {
+      a {
+        color: #000;
+
+        &:hover {
+          color: #ccc;
+        }
+      }
+    }
+  }
+  .post-details {
+    width: 500px;
+    padding: 15px 10px;
+
+    .likes {
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .post-content {
+      font-size: 15px;
+      font-weight: normal;
+      padding: 5px 0px;
+      a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 900;
+      }
+    }
+    .post-comment {
+      font-size: 14px;
+      color: gray;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+    .post-time {
+      font-size: 12px;
+      text-transform: uppercase;
+      color: gray;
+    }
+  }
+  .post-comments-area {
+    width: 500px;
+    height: 60px;
+    border: 1px solid #e9e9ee;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 10px;
+
+    a {
+      color: #000;
+    }
+
+    input {
+      padding: 5px;
+      width: 80%;
+      font-size: 15px;
+      border: none;
+    }
+    button {
+      border: none;
+      background-color: transparent;
+      color: #47afff;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 700;
+    }
+  }
+}
