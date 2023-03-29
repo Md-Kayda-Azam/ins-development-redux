@@ -1,51 +1,14 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import "./ChangePassword.scss";
-import swal from "sweetalert";
-import { changePassowrd } from "../../redux/auth/authAction";
-const ChangePassword = () => {
-  const { token } = useParams();
+import "./EmailSend.scss";
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-  const dispatch = useDispatch();
+const EmailSend = () => {
   const navigate = useNavigate();
-  const [invalidPass, setInvalidPass] = useState(false);
-  const [passwordNotMatch, setPasswordNotMatch] = useState(false);
-  const [input, setInput] = useState({
-    newPassword: "",
-    confirmPassword: "",
-  });
-
-  const handleChange = (e) => {
-    setInput((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
-  setTimeout(() => {
-    setInvalidPass(false);
-  }, 5000);
-  setTimeout(() => {
-    setPasswordNotMatch(false);
-  }, 5000);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!input.newPassword === "" || input.confirmPassword === "") {
-      setInvalidPass(true);
-    } else {
-      if (input.newPassword === input.confirmPassword) {
-        swal({
-          title: "Good job!",
-          text: "You clicked the button!",
-          icon: "success",
-        });
-        dispatch(changePassowrd(token, input.newPassword, navigate));
-      } else {
-        setPasswordNotMatch(true);
-      }
-    }
+    navigate("/account-password-reset");
   };
 
   return (
@@ -72,50 +35,27 @@ const ChangePassword = () => {
                 ></path>
               </svg>
             </div>
+            <Link to="/login" className="log">
+              Log Into Another Account
+            </Link>
           </div>
         </div>
-        <div className="login-wraper c-p-sec">
+        <div className="login-wraper c-p-sec-email-send">
           <div className="reset-info-title">
             <a href="#" className="login-logo-link">
               {" "}
             </a>
-            <span>Create A Strong Password</span>
+            <span>Email Sent</span>
             <p>
-              Your password must be at least 6 characters and should include a
-              combination of numbers, letters and special characters (!$@%).
+              We sent an email to <b>m*******9@gmail.com</b> with a link to get
+              back into your account.
             </p>
           </div>
-          <form className="login-form p-c-form" onSubmit={handleSubmit}>
-            <input
-              name="newPassword"
-              value={input.newPassword}
-              onChange={handleChange}
-              type="text"
-              className="login-input c-p-input"
-              placeholder="New password"
-            />
-            <div className="password-ins">
-              {passwordNotMatch && <p>Password not match</p>}
-            </div>
-            <input
-              name="confirmPassword"
-              value={input.confirmPassword}
-              onChange={handleChange}
-              type="text"
-              className="login-input c-p-input"
-              placeholder="New password, again"
-            />
-            <button type="submit" className="login-submit c-p-input">
-              Reset Password
-            </button>
-          </form>
-          <div className="inva">
-            {invalidPass && <p className="invalidPassd">Fill in the blanks.</p>}
-          </div>
+          <button onClick={handleSubmit}>OK</button>
         </div>
       </div>
     </>
   );
 };
 
-export default ChangePassword;
+export default EmailSend;

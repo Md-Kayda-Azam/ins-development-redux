@@ -8,7 +8,9 @@ import UserHome from "./components/UserHome/UserHome";
 import Profile from "./features/Profile/Profile";
 import PasswordReset from "./components/PasswordReset/PasswordReset";
 import ChangePassword from "./components/ChangePassword/ChangePassword";
-import { ToastContainer } from "react-toastify";
+import ProfileChangePasssword from "./components/ProfileChangePasssword/ProfileChangePasssword";
+import EmailSend from "./components/EmailSend/EmailSend";
+import ForgotPasswordCode from "./components/ForgotPasswordCode/ForgotPasswordCode";
 
 function App() {
   return (
@@ -17,12 +19,24 @@ function App() {
         <Route path="/" element={<Home />}>
           <Route path="/" element={<UserHome />} />
           <Route path="profile" element={<Profile />} />
+          <Route
+            path="account/recovery/:token"
+            element={<ProfileChangePasssword />}
+          />
         </Route>
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/activation/account" element={<Activation />} />
         <Route path="/account-password-reset" element={<PasswordReset />} />
-        <Route path="/account-password-change" element={<ChangePassword />} />
+        <Route
+          path="/account-password-change/:token"
+          element={<ChangePassword />}
+        />
+        <Route path="/email-send" element={<EmailSend />} />
+        <Route
+          path="/forgot-password-activation"
+          element={<ForgotPasswordCode />}
+        />
       </Routes>
     </>
   );

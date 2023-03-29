@@ -33,3 +33,11 @@ export const isString = (data) => {
 export const isNumber = (number) => {
   return /^[0-9\+]{1,}$/.test(number);
 };
+/**
+ * User Name Validate
+ * @param {*} number
+ * @returns
+ */
+export const isUsername = (username) => {
+  return /^[a-zA-Z0-9_-]{3,10}$/.test(username);
+};

@@ -110,7 +110,6 @@ const Signup = () => {
               <img
                 src="https://www.instagram.com/static/images/web/logged_out_wordmark.png/7a252de00b20.png"
                 alt=""
-                className="login-logo"
               />
             </Link>
             <span className="res-text">

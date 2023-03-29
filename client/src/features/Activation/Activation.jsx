@@ -4,20 +4,34 @@ import Footer from "../../components/Footer/Footer";
 import "./Activation.scss";
 import activation from "./activation.png";
 import Cookie from "js-cookie";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import swal from "sweetalert";
-import { activationByOtp, resendLink } from "../../redux/auth/authAction";
+import {
+  activationByOtp,
+  changeNumber,
+  resendLink,
+} from "../../redux/auth/authAction";
 import { isEmail, isMobile } from "../../utility/validate";
 
 const Activation = () => {
+  // const { user } = useSelector((state) => state.ins_auth.signup);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [input, setInput] = useState("");
+  const [changeNumberinput, setChangeNumberinput] = useState("");
   const activationEmail = Cookie.get("otp");
 
   const [activationC, setActivationC] = useState(false);
   const [numberField, setNumberField] = useState(false);
+
   const [codeSend, setCodeSend] = useState(false);
+
+  const [numEma, setNumEma] = useState(false);
+
+  useEffect(() => {
+    setNumEma(true);
+  }, [setNumEma]);
 
   const [numberChange, setNumberChange] = useState({
     btn: true,
@@ -38,7 +52,35 @@ const Activation = () => {
       setSaveBtn(true);
     }
   };
-  console.log(activationEmail);
+
+  // handle submit change number
+  const changeNumberSubmit = (e) => {
+    e.preventDefault();
+    dispatch(
+      changeNumber({
+        token: Cookie.get("authToken"),
+        changeNumberinput,
+      })
+    );
+    setNumberChange({
+      btn: true,
+      back: false,
+    });
+    setInputNew(false);
+    setInputOld(true);
+  };
+  const handleChangeNumber = (e) => {
+    const { value } = e.target;
+    if (/^\d{0,11}$/.test(value)) {
+      setChangeNumberinput(value);
+    }
+    if (changeNumberinput.length === 10) {
+      setSaveBtn(false);
+    } else {
+      setSaveBtn(true);
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -126,21 +168,23 @@ const Activation = () => {
                 </div>
                 <div className="text-area">
                   <p>Enter the 6-digit code we sent to:</p>
-                  <span
-                    className={` ${
-                      numberChange.btn ? "resend-code-ins" : "ksss"
-                    }`}
-                  >
-                    {activationEmail} :
-                    {!numberChange.btn && !numberChange.back && (
-                      <button
-                        className="resend-code"
-                        onClick={handleSubmitResendCode}
-                      >
-                        resend code
-                      </button>
-                    )}
-                  </span>
+                  {numEma && (
+                    <span
+                      className={` ${
+                        numberChange.btn ? "resend-code-ins" : "ksss"
+                      }`}
+                    >
+                      {activationEmail} :
+                      {!numberChange.btn && !numberChange.back && (
+                        <button
+                          className="resend-code"
+                          onClick={handleSubmitResendCode}
+                        >
+                          resend code
+                        </button>
+                      )}
+                    </span>
+                  )}
                 </div>
               </div>
               <form className="login-form from-in" onSubmit={handleSubmit}>
@@ -174,22 +218,27 @@ const Activation = () => {
                 </div>
                 <div className="text-area">
                   <p>Current phone number:</p>
-                  <span
-                    className={` ${
-                      numberChange.btn ? "resend-code-ins" : "ksss"
-                    }`}
-                  >
-                    {activationEmail}
-                  </span>
+                  {numEma && (
+                    <span
+                      className={` ${
+                        numberChange.btn ? "resend-code-ins" : "ksss"
+                      }`}
+                    >
+                      {activationEmail}
+                    </span>
+                  )}
                 </div>
               </div>
-              <form className="login-form from-in" onSubmit={handleSubmit}>
+              <form
+                className="login-form from-in"
+                onSubmit={changeNumberSubmit}
+              >
                 <input
                   type="text"
                   placeholder="New phone number"
-                  name="input"
-                  value={input}
-                  onChange={handleChange}
+                  name="changeNumberinput"
+                  value={changeNumberinput}
+                  onChange={handleChangeNumber}
                 />
 
                 <button
@@ -214,10 +263,7 @@ const Activation = () => {
           {numberChange.btn && (
             <div className="number-and-code-request">
               <button onClick={handleChnageNumber}>Change Number</button> |
-              <button onClick={handleSubmitResendCode}>
-                {" "}
-                Request New Code
-              </button>
+              <button onClick={handleSubmitResendCode}>Request New Code</button>
             </div>
           )}
           {numberChange.back && (

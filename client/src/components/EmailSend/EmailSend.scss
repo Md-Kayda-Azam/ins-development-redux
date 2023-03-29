@@ -1,0 +1,25 @@
+.c-p-sec-email-send {
+  height: 200px;
+  width: 360px;
+  padding: 20px 30px;
+  margin-top: 200px;
+  span {
+    font-size: 14px;
+    font-weight: 600;
+  }
+  p {
+    width: 80%;
+    font-size: 12px;
+    text-align: center;
+    font-weight: 300;
+    color: gray;
+    margin-top: 10px;
+  }
+}
+a.log {
+  border: none;
+  color: #000;
+  cursor: pointer;
+  transform: translate(318px, 0px);
+  font-size: 14px;
+}

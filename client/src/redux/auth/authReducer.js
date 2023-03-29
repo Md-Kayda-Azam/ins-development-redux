@@ -11,6 +11,7 @@ import {
   USER_LOGOUT,
   COVER_PHOTO_SAUCCESS,
   GET_ALL_USERS,
+  CHANGE_NUMBER_SUCCESS,
 } from "./actionType.js";
 import initialState from "./initialState.js";
 
@@ -38,6 +39,11 @@ const authReducer = (state = initialState, { type, payload }) => {
         ...state,
         loading: false,
         message: payload,
+      };
+    case CHANGE_NUMBER_SUCCESS:
+      return {
+        ...state,
+        signup: payload,
       };
     case LOGIN_USER_FAILED:
       return {

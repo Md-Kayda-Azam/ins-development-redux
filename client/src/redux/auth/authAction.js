@@ -1,12 +1,12 @@
 import createToast from "../../utility/toast";
 import axios from "axios";
 import {
+  CHANGE_NUMBER_SUCCESS,
   GET_ALL_USERS,
   LOGIN_USER_FAILED,
   LOGIN_USER_REQUREST,
   LOGIN_USER_SUCCESS,
   PROFILE_FEATURED_SAUCCESS,
-  PROFILE_PHOTO_SAUCCESS,
   PROFILE_UPDATE_SAUCCESS,
   REAGISTER_FAILED,
   REAGISTER_SUCCESS,
@@ -18,6 +18,8 @@ import {
 import Cookie from "js-cookie";
 import { LOADER_START } from "../TopLoadingBar/loaderType";
 import swal from "sweetalert";
+import { useEffect } from "react";
+import { isEmail, isMobile } from "../../utility/validate";
 
 /**
  * user register
@@ -39,7 +41,10 @@ export const userSignUp = (data, e, setInput, navigate) => async (dispatch) => {
           icon: "success",
           button: "Aww yiss!",
         });
-
+        dispatch({
+          type: REAGISTER_SUCCESS,
+          payload: res.data.user,
+        });
         setInput({
           auth: "",
           full_name: "",
@@ -109,6 +114,47 @@ export const activationByOtp =
   };
 
 /**
+ * user activation by otp
+ * @param {*} param0
+ * @param {*} navigate
+ * @returns
+ */
+export const activationByOtpForgotPassword =
+  ({ code }, token, navigate, setInvalidPass, setActivationC) =>
+  async (dispatch) => {
+    try {
+      await axios
+        .post("/api/v1/user/code-activate-forgot-password", {
+          code: code,
+        })
+        .then((res) => {
+          swal({
+            title: "Account activate successful!",
+            text: "You clicked the button!",
+            icon: "success",
+            button: "Aww yiss!",
+          });
+          navigate(`/account-password-change/${token}`);
+          Cookie.remove("otp");
+          dispatch({
+            type: LOGIN_USER_SUCCESS,
+            payload: res.data.user,
+          });
+          dispatch({
+            type: LOADER_START,
+          });
+        })
+        .catch((error) => {
+          // setActivationC(true);
+          setInvalidPass(true);
+          // swal(error.response.data.message);
+        });
+    } catch (error) {
+      swal(error.response.data.message);
+    }
+  };
+
+/**
  * reset link
  * @param {*} email
  * @param {*} navigate
@@ -131,55 +177,82 @@ export const resendLink =
   };
 
 /**
+ * reset link
+ * @param {*} email
+ * @param {*} navigate
+ * @returns
+ */
+export const resendForgotPassword =
+  (activationEmail, setCodeSend, setInvalidPass) => async (dispatch) => {
+    try {
+      await axios
+        .post("/api/v1/user//resend-forgot-password", { auth: activationEmail })
+        .then((res) => {
+          setCodeSend(true);
+        })
+        .catch((error) => {
+          setInvalidPass(true);
+          // swal(error.response.data.message, "error");
+        });
+    } catch (error) {
+      swal(error.response.data.message, "error");
+    }
+  };
+
+/**
+ * chnage number
+ * @param {*} token
+ * @param {*} changeNumberinput
+ * @returns
+ */
+export const changeNumber = (token, changeNumberinput) => async (dispatch) => {
+  try {
+    await axios
+      .post("/api/v1/user/change-number", {
+        token,
+        number: changeNumberinput,
+      })
+      .then((res) => {
+        // dispatch({
+        //   type: CHANGE_NUMBER_SUCCESS,
+        //   payload: res.data,
+        // });
+      })
+      .catch((error) => {
+        swal(error.response.data.message, "error");
+      });
+  } catch (error) {
+    swal(error.response.data.message, "error");
+  }
+};
+
+/**
  * check password
  * @param {*} data
  * @param {*} navigate
  * @returns
  */
-export const checkPasswordResendCode = (data, navigate) => async (dispatch) => {
-  try {
-    await axios
-      .post("/api/v1/user/check-password-reset-otp", {
-        auth: data.auth,
-        code: data.code,
-      })
-      .then((res) => {
-        createToast(res.data.message, "success");
-        navigate("/change-password");
-      })
-      .catch((error) => {
-        createToast(error.response.data.message);
-      });
-  } catch (error) {
-    createToast(error.response.data.message);
-  }
-};
-
-/**
- * change pasword
- * @param {*} data
- * @param {*} navigate
- * @returns
- */
-export const changePassowrd = (data, navigate) => async (dispatch) => {
-  try {
-    await axios
-      .post("/api/v1/user/user-password-reset", {
-        id: data.id,
-        code: data.code,
-        password: data.password,
-      })
-      .then((res) => {
-        createToast(res.data.message, "success");
-        navigate("/");
-      })
-      .catch((error) => {
-        createToast(error.response.data.message);
-      });
-  } catch (error) {
-    createToast(error.respone.data.message);
-  }
-};
+export const checkPasswordResendCode =
+  (input, navigate, setNoUser) => async (dispatch) => {
+    try {
+      await axios
+        .post("/api/v1/user/forgot-password", input)
+        .then((res) => {
+          if (isEmail(input.auth)) {
+            navigate("/email-send");
+          } else if (isMobile(input.auth)) {
+            navigate("/forgot-password-activation");
+          } else {
+            console.log("Data not found");
+          }
+        })
+        .catch((error) => {
+          setNoUser(true);
+        });
+    } catch (error) {
+      swal(error.response.data.message, "error");
+    }
+  };
 
 /**
  * user login
@@ -187,39 +260,59 @@ export const changePassowrd = (data, navigate) => async (dispatch) => {
  * @param {*} navigate
  * @returns
  */
-export const userLogin = (data, navigate) => async (dispatch) => {
-  try {
-    dispatch({
-      type: LOGIN_USER_REQUREST,
-    });
-    await axios
-      .post("/api/v1/user/login", {
-        auth: data.auth,
-        password: data.password,
-      })
-      .then((res) => {
-        createToast(res.data.message, "success");
-        navigate("/");
-        dispatch({
-          type: LOGIN_USER_SUCCESS,
-          payload: res.data.user,
-        });
-        dispatch({
-          type: LOADER_START,
-        });
-      })
-      .catch((error) => {
-        createToast(error.response.data.message);
-        dispatch({
-          type: LOGIN_USER_FAILED,
-        });
-        // navigate("/forgot-password");
+export const userLogin =
+  (auth, password, navigate, setInvalidPass) => async (dispatch) => {
+    try {
+      dispatch({
+        type: LOGIN_USER_REQUREST,
       });
-  } catch (error) {
-    createToast(error.respone.data.message);
-  }
-};
-
+      await axios
+        .post("/api/v1/user/login", { auth, password })
+        .then((res) => {
+          navigate("/");
+          dispatch({
+            type: LOGIN_USER_SUCCESS,
+            payload: res.data.user,
+          });
+          dispatch({
+            type: LOADER_START,
+          });
+        })
+        .catch((error) => {
+          setInvalidPass(true);
+          dispatch({
+            type: LOGIN_USER_FAILED,
+          });
+          // navigate("/forgot-password");
+        });
+    } catch (error) {
+      createToast(error.respone.data.message);
+    }
+  };
+/**
+ * change pasword
+ * @param {*} data
+ * @param {*} navigate
+ * @returns
+ */
+export const changePassowrd =
+  (token, newPassword, navigate) => async (dispatch) => {
+    try {
+      await axios
+        .post(`/api/v1/user/forgot-password/${token}`, {
+          newPassword,
+        })
+        .then((res) => {
+          createToast(res.data.message, "success");
+          navigate("/");
+        })
+        .catch((error) => {
+          createToast(error.response.data.message);
+        });
+    } catch (error) {
+      createToast(error.respone.data.message);
+    }
+  };
 /**
  * Token user /////me
  * @param {*} token

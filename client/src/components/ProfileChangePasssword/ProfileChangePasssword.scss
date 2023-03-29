@@ -1,0 +1,59 @@
+img.login-logo {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.c-p-sec-p {
+  height: 400px;
+  width: 360px;
+  padding: 20px 30px;
+  margin-top: 120px;
+}
+.c-p-sec-p .p-c-form-p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 12px !important;
+  .password-ins {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 16px;
+    p {
+      font-size: 12px;
+      margin-left: 45px;
+      color: red;
+    }
+  }
+}
+.reset-info-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+input.login-input.c-p-input {
+  height: 40px !important;
+}
+button {
+  border: none;
+  color: #4cb5f9;
+  cursor: pointer;
+  &:hover {
+    color: black;
+  }
+}
+.inva {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 16px;
+  p {
+    font-size: 12px;
+    margin-left: 30px;
+    color: red;
+  }
+}

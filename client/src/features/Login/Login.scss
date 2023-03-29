@@ -11,6 +11,7 @@
     border: 1px solid #ddd;
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
     align-items: center;
     background-color: #fafafa;
     padding: 20px 0px 20px 0px;
@@ -194,6 +195,13 @@
       justify-content: center;
       align-items: center;
       gap: 10px;
+    }
+    p.invalidPassd {
+      font-size: 12px;
+      text-align: center;
+      width: 87%;
+      padding: 20px;
+      color: red;
     }
     .forgot-password {
       text-decoration: none;

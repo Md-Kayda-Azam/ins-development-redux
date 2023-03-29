@@ -3,6 +3,7 @@ import { GrFacebook } from "react-icons/gr";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
+import { userLogin } from "../../redux/auth/authAction";
 import "./Login.scss";
 
 const Login = () => {
@@ -13,6 +14,8 @@ const Login = () => {
     password: "",
   });
 
+  const [invalidPass, setInvalidPass] = useState(false);
+
   const handleChange = (e) => {
     setInput((prev) => ({
       ...prev,
@@ -22,14 +25,7 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch();
-    // loginUser(
-    //   {
-    //     auth: input.auth,
-    //     password: input.password,
-    //   },
-    //   navigate("/")
-    // )
+    dispatch(userLogin(input.auth, input.password, navigate, setInvalidPass));
   };
 
   return (
@@ -40,7 +36,6 @@ const Login = () => {
           <img
             src="https://www.instagram.com/static/images/web/logged_out_wordmark.png/7a252de00b20.png"
             alt=""
-            className="login-logo"
           />
         </a>
 
@@ -72,6 +67,12 @@ const Login = () => {
           {" "}
           <GrFacebook /> Login with Facebook
         </a>
+        {invalidPass && (
+          <p className="invalidPassd">
+            Sorry, your password was incorrect. Please double-check your
+            password.
+          </p>
+        )}
         <Link className="forgot-password" to="/account-password-reset">
           Forgot Password?
         </Link>

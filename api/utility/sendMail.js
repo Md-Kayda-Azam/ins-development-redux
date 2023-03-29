@@ -111,7 +111,7 @@ export const sentForgotPasswordLink = async (to, data) => {
             <table width="100%" style="border-spacing:0;padding: 30px 10px; text-align: center;">
               <tr>
                 <td class="message-name" style="padding:0;">
-                 <a style="padding: 20px 112px; background-color:#47a2ea; border-radius: 5px; font-size: 18px; font-weight: 600;border: none; outline: none; cursor: pointer;" href=${data.loginAsAccountLink}><button style=" margin-top: 10px; color:#f2fdfd; background-color: #47a2ea; font-size: 18px; font-weight: 600;border: none; outline: none; cursor: pointer;">Log in as ${data.name}</button></a>
+                 <a style="padding: 20px 78px; background-color:#47a2ea; border-radius: 5px; font-size: 18px; font-weight: 600;border: none; outline: none; cursor: pointer;" href=${data.loginAsAccountLink}><button style=" margin-top: 10px; color:#f2fdfd; background-color: #47a2ea; font-size: 18px; font-weight: 600;border: none; outline: none; cursor: pointer;">Log in as ${data.name}</button></a>
                 </td>
               </tr>
             </table>

@@ -1,36 +1,37 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { GrFacebook } from "react-icons/gr";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../Footer/Footer";
 import "./PasswordReset.scss";
 import lock from "./lock.png";
+import {
+  checkPasswordResendCode,
+  PasswordResendCode,
+} from "../../redux/auth/authAction";
+import { isEmail, isMobile } from "../../utility/validate";
 
 const PasswordReset = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [input, setInput] = useState({
     auth: "",
-    password: "",
   });
-
+  const [noUser, setNoUser] = useState(false);
   const handleChange = (e) => {
     setInput((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
   };
+  useEffect(() => {
+    setInput(false);
+  }, [setNoUser]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch();
-    // loginUser(
-    //   {
-    //     auth: input.auth,
-    //     password: input.password,
-    //   },
-    //   navigate("/")
-    // )
+
+    dispatch(checkPasswordResendCode(input, navigate, setNoUser));
   };
   return (
     <div className="login-container sec-reset">
@@ -95,6 +96,11 @@ const PasswordReset = () => {
         </Link>
       </div>
       <Footer />
+      {noUser && (
+        <div className="footer-area">
+          <span>No user found</span>
+        </div>
+      )}
     </div>
   );
 };
