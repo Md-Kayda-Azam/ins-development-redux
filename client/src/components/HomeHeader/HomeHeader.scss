@@ -238,12 +238,12 @@
         padding: 0px 10px;
         background-color: rgb(255, 255, 255);
         width: 258px;
-        ul {
+        .ul {
           display: flex;
           justify-content: center;
           align-items: flex-start;
           flex-direction: column;
-          li {
+          a {
             display: flex;
             justify-content: space-between;
             width: 100%;

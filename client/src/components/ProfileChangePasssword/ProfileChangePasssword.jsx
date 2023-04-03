@@ -1,11 +1,15 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import "./ProfileChangePasssword.scss";
 import swal from "sweetalert";
 import { changePassowrd } from "../../redux/auth/authAction";
+import HomeHeader from "../HomeHeader/HomeHeader";
+import Avatar from "../Avatar/Avatar";
 
 const ProfileChangePasssword = () => {
+  const { user } = useSelector((state) => state.ins_auth);
+
   const { token } = useParams();
 
   const dispatch = useDispatch();
@@ -52,15 +56,12 @@ const ProfileChangePasssword = () => {
 
   return (
     <>
+      <HomeHeader />
       <div className="login-container sec-reset">
-        <div className="login-wraper c-p-sec-p">
+        <div className="login-wraper c-p-sec-p ">
           <div className="reset-info-title">
-            <img
-              src="https://www.goodmorningimagesdownload.com/wp-content/uploads/2021/11/Free-Smart-Boy-Dp-Pics-Wallpaper-Pictures-Download-1.jpg"
-              alt=""
-              className="login-logo"
-            />
-            <span>azam</span>
+            <Avatar />
+            <span>{user.username}</span>
           </div>
           <form className="login-form p-c-form-p" onSubmit={handleSubmit}>
             <input
@@ -91,7 +92,9 @@ const ProfileChangePasssword = () => {
             {invalidPass && <p className="invalidPassd">Fill in the blanks.</p>}
           </div>
 
-          <button>skip</button>
+          <Link to="/" className="skip">
+            skip
+          </Link>
         </div>
       </div>
     </>

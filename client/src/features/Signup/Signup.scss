@@ -11,3 +11,27 @@ a.login-submit {
     }
   }
 }
+img.auth {
+  position: absolute;
+  transform: translate(-31px, 3px);
+}
+
+.password-hh {
+  position: absolute;
+  transform: translate(286px, -36px);
+
+  img.username {
+    transform: translate(-31px, 3px);
+  }
+}
+.password-oo {
+  position: absolute;
+  transform: translate(268px, -40px);
+
+  img.username {
+    transform: translate(-31px, 3px);
+  }
+}
+button.btn-code {
+  transform: translate(-3px, 4px);
+}

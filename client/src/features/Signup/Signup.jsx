@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { GrFacebook } from "react-icons/gr";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
@@ -6,8 +6,16 @@ import birthday from "./birthday.png";
 import "./Signup.scss";
 import { useDispatch } from "react-redux";
 import swal from "sweetalert";
-import { userSignUp } from "../../redux/auth/authAction";
-import { ToastContainer } from "react-toastify";
+import right from "./img/right.png";
+import wrong from "./img/wrong.png";
+import getCode from "./img/getCode.png";
+import {
+  signUpCheckAdress,
+  signUpCheckUsername,
+  userSignUp,
+} from "../../redux/auth/authAction";
+import { isEmail, isMobile, isUsername } from "../../utility/validate";
+import { getRandom } from "../../utility/math";
 
 const day = [
   1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
@@ -37,6 +45,7 @@ const Signup = () => {
   const navigate = useNavigate();
   const [signup, setSignup] = useState(true);
   const [birthDay, setBirthDay] = useState(false);
+  const [mobile_ise, setMobile_ise] = useState(false);
 
   const [input, setInput] = useState({
     auth: "",
@@ -48,6 +57,25 @@ const Signup = () => {
     year: new Date().getFullYear(),
   });
 
+  const handleCodeRandom = (e) => {
+    e.preventDefault();
+    const getRandomd = getRandom(145, 658);
+    setInput({
+      username: input.auth + getRandomd,
+    });
+  };
+
+  const [valid, setValid] = useState({
+    right: false,
+    wrong: false,
+  });
+  const [validu, setValidu] = useState({
+    rightu: false,
+    wrongu: false,
+  });
+  const [btnD, setBtnD] = useState(true);
+  const [full_name, setFull_name] = useState(false);
+  const [username, setUsername] = useState(false);
   /// handle input chaneg
   const handleInput = (e) => {
     setInput((prev) => ({
@@ -56,48 +84,124 @@ const Signup = () => {
     }));
   };
 
+  setTimeout(() => {
+    setMobile_ise(false);
+  }, 10000);
+
   const handleActivation = (e) => {
     e.preventDefault();
-    if (
-      input.full_name === "" ||
-      input.username === "" ||
-      input.password === ""
-    ) {
-      swal({
-        title: "Please field in the gap!",
-        text: "You clicked the button!",
-        icon: "error",
+    setSignup(false);
+    setBirthDay(true);
+    // if (input.auth === "") {
+    //   console.log("Auth check the from");
+    // } else if (input.full_name === "") {
+    //   console.log("Full_name check the from");
+    // } else if (input.username === "") {
+    //   console.log("username check the from");
+    // } else if (input.password === "") {
+    //   console.log("password check the from");
+    // } else {
+    //   if (valid.right === true) {
+    //     setSignup(false);
+    //     setBirthDay(true);
+    //   } else {
+    //     // console.log("Enter a valid email address.");
+    //     setMobile_ise(true);
+    //   }
+    //   if (valid.right === true) {
+    //     setSignup(false);
+    //     setBirthDay(true);
+    //   } else {
+    //     // console.log("Enter a valid Phone number.");
+    //     setMobile_ise(true);
+    //   }
+    // }
+  };
+  const handleBlur = () => {
+    if (isEmail(input.auth)) {
+      setValid({
+        right: true,
+        wrong: false,
       });
+      setBtnD(false);
+      dispatch(signUpCheckAdress(input.auth, setValid, setBtnD));
+    } else if (isMobile(input.auth)) {
+      setValid({
+        right: true,
+        wrong: false,
+      });
+      setBtnD(false);
+      dispatch(signUpCheckAdress(input.auth, setValid, setBtnD));
     } else {
-      setSignup(false);
-      setBirthDay(true);
+      setValid({
+        wrong: true,
+        right: false,
+      });
+      setBtnD(true);
     }
   };
+  const handleBlurUsername = () => {
+    if (isUsername(input.username)) {
+      setValidu({
+        wrongu: false,
+        rightu: true,
+      });
+      setBtnD(false);
+      dispatch(signUpCheckUsername(input.username, setValidu, setBtnD));
+    } else {
+      setValidu({
+        wrongu: true,
+        rightu: false,
+      });
+      setBtnD(true);
+    }
+  };
+  const [changePassword, setChangePassword] = useState(true);
+  const changeIcon = changePassword === true ? false : true;
 
+  const handleShowPassword = (e) => {
+    e.preventDefault();
+    setChangePassword(changeIcon);
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    dispatch(
-      userSignUp(
-        {
-          full_name: input.full_name,
-          username: input.username,
-          auth: input.auth,
-          password: input.password,
-          birth_day: input.day,
-          birth_month: input.month,
-          birth_year: input.year,
-        },
-        setInput,
-        navigate("/activation/account"),
-        e
-      )
-    );
+    if (valid)
+      dispatch(
+        userSignUp(
+          {
+            full_name: input.full_name,
+            username: input.username,
+            auth: input.auth,
+            password: input.password,
+            birth_day: input.day,
+            birth_month: input.month,
+            birth_year: input.year,
+          },
+          setInput,
+          navigate("/activation/account"),
+          e
+        )
+      );
   };
 
   const handleGoBack = () => {
     setSignup(true);
     setBirthDay(false);
+  };
+
+  const handleBlurFullname = () => {
+    if (input.full_name) {
+      setFull_name(true);
+    } else {
+      setFull_name(false);
+    }
+  };
+  const handleBlurPAssword = () => {
+    if (input.password) {
+      setUsername(true);
+    } else {
+      setUsername(false);
+    }
   };
 
   return (
@@ -126,11 +230,14 @@ const Signup = () => {
               <input
                 name="auth"
                 type="text"
-                className="login-input"
+                className="login-input auth"
                 value={input.auth}
                 onChange={handleInput}
                 placeholder="Mobile number or email"
+                onBlur={handleBlur}
               />
+              {valid.right && <img className="auth" src={right} alt="" />}
+              {valid.wrong && <img className="auth" src={wrong} alt="" />}
               <input
                 name="full_name"
                 type="text"
@@ -138,24 +245,42 @@ const Signup = () => {
                 onChange={handleInput}
                 className="login-input"
                 placeholder="Full Name"
+                onBlur={handleBlurFullname}
               />
+              {full_name && <img className="auth" src={right} alt="" />}
               <input
                 name="username"
                 type="text"
                 value={input.username}
                 onChange={handleInput}
-                className="login-input"
+                className="login-input username"
                 placeholder="User Name"
+                onBlur={handleBlurUsername}
               />
+              <div className="password-hh">
+                {validu.rightu && <img className="auth" src={right} alt="" />}
+                {validu.wrongu && <img className="auth" src={wrong} alt="" />}
+                {/* <button className="btn-code" onClick={handleCodeRandom}>
+                  <img className="get-code" src={getCode} alt="" />
+                </button> */}
+              </div>
               <input
                 name="password"
-                type="password"
+                type={changePassword ? "password" : "text"}
                 value={input.password}
                 onChange={handleInput}
                 className="login-input"
                 placeholder="password"
+                onBlur={handleBlurPAssword}
               />
-
+              <div className="password-oo">
+                {username && <img className="auth" src={right} alt="" />}
+                {username && (
+                  <button className="show-hide" onClick={handleShowPassword}>
+                    {changeIcon ? "Hide" : "Show"}
+                  </button>
+                )}
+              </div>
               <div className="res-info">
                 <div className="res-from-text">
                   People who use our service may have upload your contact
@@ -169,10 +294,15 @@ const Signup = () => {
                   <a href="#"> Lear More</a>
                 </div>
               </div>
-
-              <button onClick={handleActivation} className="login-submit">
+              <button
+                onClick={handleActivation}
+                className="login-submit"
+                disabled={btnD}
+              >
                 Sign up
               </button>
+              {mobile_ise && <p>Already axists Email or Phone number.</p>}
+              {/* {mobile_ise && <p>Enter a valid Email or Phone number.</p>} */}
             </div>
           </div>
         )}

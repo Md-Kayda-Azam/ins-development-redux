@@ -1,0 +1,285 @@
+.profiles-area {
+  .profiles-wraper {
+    width: 742px;
+    display: flex;
+    justify-content: flex-start;
+    padding: 8px 33px;
+    flex-direction: column;
+    .profiles-title {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-bottom: 20px;
+      span {
+        font-size: 23px;
+        font-weight: 800;
+      }
+      p {
+        font-size: 14px;
+        a {
+          color: #2b8ef2;
+          font-weight: 500;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+    .profiles-item {
+      width: 100%;
+      .item {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px;
+        border-bottom: 1px solid #ddd;
+        cursor: pointer;
+        .profile-info {
+          display: flex;
+          gap: 10px;
+          img {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            position: relative;
+            cursor: pointer;
+          }
+          button.img {
+            position: absolute;
+            transform: translate(20px, 19px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            padding: 3px;
+
+            img {
+              height: 20px;
+              width: 20px;
+              cursor: pointer;
+            }
+          }
+          .name-area {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            span {
+              font-size: 15px;
+            }
+          }
+        }
+      }
+      .add-account {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px;
+        height: 50px;
+        cursor: pointer;
+        button {
+          font-size: 16px;
+          font-weight: 500;
+          color: #0e67d6;
+        }
+      }
+    }
+  }
+}
+
+.profile {
+  height: 480px;
+
+  .wraper {
+    width: 100%;
+    .img-info {
+      width: 86%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      img {
+        width: 100px;
+        height: 100px;
+        margin-top: 15px;
+        border-radius: 50%;
+      }
+    }
+    .name-area {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      span {
+        font-size: 16px;
+        font-weight: 500;
+      }
+      p {
+        font-size: 14px;
+        color: #798893;
+        font-weight: 200;
+        font-family: "circular";
+      }
+    }
+    .item-area {
+      width: 81%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+      margin-top: 40px;
+      background: #fff;
+      border-radius: 10px;
+      margin-left: 21px;
+      .item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 99%;
+        background-color: #fff;
+        padding-left: 24px;
+        height: 60px;
+        cursor: pointer;
+        padding-right: 15px;
+        &:active {
+          background-color: #e4e4e4;
+        }
+      }
+      .border {
+        border-top: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+      }
+      .rds {
+        border-radius: 10px 10px 0px 0px;
+      }
+      .rdsb {
+        border-radius: 0px 0px 10px 10px;
+      }
+    }
+    .footer-profile {
+      width: 100%;
+      margin-top: 20px;
+      .item {
+        width: 80%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-left: 12px;
+        margin-left: 25px;
+        background-color: #fff;
+        border-radius: 10px;
+        border-bottom: 1px solid #ddd;
+        cursor: pointer;
+        height: 60px;
+        padding-right: 15px;
+        &:active {
+          background-color: #e4e4e4;
+        }
+        .profile-info {
+          display: flex;
+          gap: 10px;
+          img {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            position: relative;
+            cursor: pointer;
+          }
+          button.img {
+            position: absolute;
+            transform: translate(20px, 19px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            padding: 3px;
+
+            img {
+              height: 20px;
+              width: 20px;
+              cursor: pointer;
+            }
+          }
+          .name-area-foo {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            span {
+              font-size: 15px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.name-update {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 10px 30px;
+  height: 440px;
+  .title {
+    margin-top: 10px;
+    span {
+      font-size: 20px;
+      font-weight: 500;
+    }
+  }
+  textarea {
+    width: 89%;
+    height: 56px;
+    margin-top: 30px;
+    border-radius: 10px;
+  }
+  p {
+    font-size: 13px;
+    margin-top: 10px;
+  }
+  p.p-username {
+    font-size: 14px;
+    margin-top: 5px;
+    width: 86%;
+  }
+  p.p-propic {
+    font-size: 14px;
+    margin-top: 15px;
+    width: 86%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      height: 200px;
+      width: 200px;
+      border-radius: 50%;
+    }
+  }
+  .footer-btn {
+    margin-top: 210px;
+    button {
+      width: 500px;
+      background-color: #8fbbf2;
+      height: 45px;
+      border-radius: 30px;
+      color: #fff;
+      font-size: 16px;
+    }
+  }
+  .footer-pic {
+    margin-top: 80px;
+    width: 100%;
+    label {
+      width: 500px;
+      background-color: #ffffff;
+      height: 45px;
+      border-radius: 30px;
+      color: #000;
+      font-size: 16px;
+    }
+  }
+}

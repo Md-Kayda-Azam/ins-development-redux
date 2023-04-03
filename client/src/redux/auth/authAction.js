@@ -19,7 +19,8 @@ import Cookie from "js-cookie";
 import { LOADER_START } from "../TopLoadingBar/loaderType";
 import swal from "sweetalert";
 import { useEffect } from "react";
-import { isEmail, isMobile } from "../../utility/validate";
+import { isEmail, isMobile, isUsername } from "../../utility/validate";
+import Cookies from "js-cookie";
 
 /**
  * user register
@@ -71,6 +72,55 @@ export const userSignUp = (data, e, setInput, navigate) => async (dispatch) => {
     });
   }
 };
+
+/**
+ *
+ * @param {*} auth
+ * @returns
+ */
+export const signUpCheckAdress =
+  (auth, setValid, setBtnD) => async (dispatch) => {
+    try {
+      await axios
+        .post("/api/v1/user/signup-check-address", { auth: auth })
+        .then((res) => {
+          // swal(res.data.message);
+          setValid({
+            wrong: true,
+          });
+          setBtnD(true);
+        })
+        .catch((error) => {
+          swal(error.response.data.message, "error");
+        });
+    } catch (error) {
+      swal(error.response.data.message, "error");
+    }
+  };
+/**
+ *
+ * @param {*} auth
+ * @returns
+ */
+export const signUpCheckUsername =
+  (auth, setValidu, setBtnD) => async (dispatch) => {
+    try {
+      await axios
+        .post("/api/v1/user/signup-check-username", { auth: auth })
+        .then((res) => {
+          // swal(res.data.message);
+          setValidu({
+            wrongu: true,
+          });
+          setBtnD(true);
+        })
+        .catch((error) => {
+          swal("error");
+        });
+    } catch (error) {
+      swal(error.response.data.message, "error");
+    }
+  };
 
 /**
  * user activation by otp
@@ -134,15 +184,8 @@ export const activationByOtpForgotPassword =
             icon: "success",
             button: "Aww yiss!",
           });
-          navigate(`/account-password-change/${token}`);
+          navigate(`/account-password-change/${res.data.token}`);
           Cookie.remove("otp");
-          dispatch({
-            type: LOGIN_USER_SUCCESS,
-            payload: res.data.user,
-          });
-          dispatch({
-            type: LOADER_START,
-          });
         })
         .catch((error) => {
           // setActivationC(true);
@@ -238,12 +281,12 @@ export const checkPasswordResendCode =
       await axios
         .post("/api/v1/user/forgot-password", input)
         .then((res) => {
-          if (isEmail(input.auth)) {
+          if (isEmail(res.data.email)) {
             navigate("/email-send");
-          } else if (isMobile(input.auth)) {
+          } else if (isMobile(res.data.mobile)) {
             navigate("/forgot-password-activation");
           } else {
-            console.log("Data not found");
+            setNoUser(true);
           }
         })
         .catch((error) => {
@@ -279,6 +322,8 @@ export const userLogin =
           });
         })
         .catch((error) => {
+          swal(error.respone.data.message);
+
           setInvalidPass(true);
           dispatch({
             type: LOGIN_USER_FAILED,
@@ -286,7 +331,7 @@ export const userLogin =
           // navigate("/forgot-password");
         });
     } catch (error) {
-      createToast(error.respone.data.message);
+      setInvalidPass(true);
     }
   };
 /**
@@ -303,14 +348,21 @@ export const changePassowrd =
           newPassword,
         })
         .then((res) => {
-          createToast(res.data.message, "success");
+          dispatch({
+            type: LOGIN_USER_SUCCESS,
+            payload: res.data.user,
+          });
           navigate("/");
+          dispatch({
+            type: LOADER_START,
+          });
+          swal(res.data.message, "success");
         })
         .catch((error) => {
-          createToast(error.response.data.message);
+          swal(error.response.data.message);
         });
     } catch (error) {
-      createToast(error.respone.data.message);
+      swal(error.respone.data.message);
     }
   };
 /**
@@ -318,7 +370,7 @@ export const changePassowrd =
  * @param {*} token
  * @returns
  */
-export const tokenUser = (token) => async (dispatch) => {
+export const tokenUser = (token, navigate) => async (dispatch) => {
   try {
     dispatch({
       type: TOKEN_USER_REQUREST,
@@ -330,7 +382,7 @@ export const tokenUser = (token) => async (dispatch) => {
         },
       })
       .then((res) => {
-        createToast(res.data.message, "success");
+        // swal(res.data.message, "success");
         // navigate("/");
         dispatch({
           type: TOKEN_USER_SUCCESS,
@@ -341,14 +393,14 @@ export const tokenUser = (token) => async (dispatch) => {
         });
       })
       .catch((error) => {
-        createToast(error.response.data.message);
+        swal(error.response.data.message);
         dispatch({
           type: TOKEN_USER_FAILED,
         });
         dispatch(userLogin());
       });
   } catch (error) {
-    createToast(error.respone.data.message);
+    swal(error.respone.data.message);
     dispatch({
       type: TOKEN_USER_FAILED,
     });

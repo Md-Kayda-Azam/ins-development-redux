@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { GrFacebook } from "react-icons/gr";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../Footer/Footer";
 import "./PasswordReset.scss";
 import lock from "./lock.png";
-import {
-  checkPasswordResendCode,
-  PasswordResendCode,
-} from "../../redux/auth/authAction";
-import { isEmail, isMobile } from "../../utility/validate";
+import { checkPasswordResendCode } from "../../redux/auth/authAction";
+import { isEmail, isMobile, isUsername } from "../../utility/validate";
 
 const PasswordReset = () => {
   const dispatch = useDispatch();
@@ -18,20 +14,35 @@ const PasswordReset = () => {
     auth: "",
   });
   const [noUser, setNoUser] = useState(false);
+  const [saveBtn, setSaveBtn] = useState(true);
   const handleChange = (e) => {
     setInput((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
+    if (input.auth.length === 1) {
+      setSaveBtn(true);
+    } else {
+      setSaveBtn(false);
+    }
   };
-  useEffect(() => {
-    setInput(false);
-  }, [setNoUser]);
+  setTimeout(() => {
+    setNoUser(false);
+  }, 5000);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(checkPasswordResendCode(input, navigate, setNoUser));
+    if (isEmail(input.auth)) {
+      dispatch(checkPasswordResendCode(input, navigate, setNoUser));
+    } else if (isMobile(input.auth)) {
+      dispatch(checkPasswordResendCode(input, navigate, setNoUser));
+    } else if (isUsername(input.auth)) {
+      // console.log(input.auth);
+      dispatch(checkPasswordResendCode(input, navigate, setNoUser));
+    } else {
+      setNoUser(true);
+    }
   };
   return (
     <div className="login-container sec-reset">
@@ -61,7 +72,6 @@ const PasswordReset = () => {
       <div className="login-wraper reset-sec">
         <div className="reset-info-title">
           <a href="#" className="login-logo-link">
-            {" "}
             <img src={lock} alt="" className="login-logo" />
           </a>
           <span>Trouble logging in?</span>
@@ -79,7 +89,11 @@ const PasswordReset = () => {
             className="login-input"
             placeholder="Email, Phone or Username"
           />
-          <button type="submit" className="login-submit">
+          <button
+            type="submit"
+            className={`login-submit ${!saveBtn && "color-ss"}`}
+            disabled={saveBtn}
+          >
             Send login link
           </button>
           <a href="#">Can't reset your password?</a>

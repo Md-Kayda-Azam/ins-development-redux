@@ -36,11 +36,6 @@ const ChangePassword = () => {
       setInvalidPass(true);
     } else {
       if (input.newPassword === input.confirmPassword) {
-        swal({
-          title: "Good job!",
-          text: "You clicked the button!",
-          icon: "success",
-        });
         dispatch(changePassowrd(token, input.newPassword, navigate));
       } else {
         setPasswordNotMatch(true);
@@ -50,6 +45,7 @@ const ChangePassword = () => {
 
   return (
     <>
+    
       <div className="login-container sec-reset">
         <div className="header-password-reset">
           <div className="wraper">

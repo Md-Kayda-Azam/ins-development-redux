@@ -1,18 +1,19 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import Avatar from "../Avatar/Avatar";
 
 const UserInfo = () => {
+  const { user } = useSelector((state) => state.ins_auth);
+
   return (
     <>
       <div className="user-info-home">
         <div className="user-item-home">
           <div className="info-home-user">
-            <img
-              src="https://i.pinimg.com/originals/9b/65/38/9b6538a14d5c7e5a2525b8436de1d80f.jpg"
-              alt=""
-            />
+            <Avatar />
             <div className="info-others-home">
-              <a href="#">azam</a>
-              <div className="Full-name">Md Kayda Azam</div>
+              <a href="#">{user.username}</a>
+              <div className="Full-name">{user.full_name}</div>
             </div>
           </div>
           <button className="switch">Switch</button>

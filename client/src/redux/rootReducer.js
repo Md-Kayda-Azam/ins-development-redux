@@ -6,7 +6,7 @@ import loaderReducer from "./TopLoadingBar/loaderReducer";
 // create root reducer
 export const rootReducer = combineReducers({
   ins_auth: authReducer,
-  top_bar_loader: loaderReducer,
+  loader: loaderReducer,
   toast: toastReducer,
   chat: "",
 });

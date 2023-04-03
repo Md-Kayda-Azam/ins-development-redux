@@ -15,19 +15,40 @@ const Login = () => {
   });
 
   const [invalidPass, setInvalidPass] = useState(false);
+  const [username, setUsername] = useState(false);
 
+  const [changePassword, setChangePassword] = useState(true);
+  const changeIcon = changePassword === true ? false : true;
+
+  const handleShowPassword = (e) => {
+    e.preventDefault();
+    setChangePassword(changeIcon);
+  };
   const handleChange = (e) => {
     setInput((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
+
+    if (input.password.length) {
+      setUsername(true);
+    } else if (input.password.length === 0) {
+      setUsername(false);
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     dispatch(userLogin(input.auth, input.password, navigate, setInvalidPass));
   };
-
+  const handleBlurPAssword = () => {
+    if (input.password) {
+      setUsername(true);
+    } else {
+      setUsername(false);
+    }
+  };
   return (
     <div className="login-container">
       <div className="login-wraper">
@@ -50,12 +71,18 @@ const Login = () => {
           />
           <input
             name="password"
-            type="text"
+            type={changeIcon ? "text" : "password"}
             value={input.password}
             onChange={handleChange}
-            className="login-input"
+            className="login-input username"
+            onBlur={handleBlurPAssword}
             placeholder="password"
           />
+          {username && (
+            <button className="show-hide-ins" onClick={handleShowPassword}>
+              {changeIcon ? "Hide" : "Show"}
+            </button>
+          )}
           <button type="submit" className="login-submit">
             Log IN
           </button>

@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import usePopupClose from "../../hooks/usePopupClose";
+import Avatar from "../Avatar/Avatar";
 import HeaderMore from "./HeaderMore/HeaderMore";
 import "./HomeHeader.scss";
 import InsIcon from "./InsIcon/InsIcon";
@@ -420,10 +421,7 @@ const HomeHeader = () => {
               <li>
                 <Link to="profile">
                   <div className="active-option">
-                    <img
-                      src="https://i.pinimg.com/736x/f1/8d/78/f18d78e67f1507115d26cf32e060a1e6.jpg"
-                      alt=""
-                    />
+                    <Avatar />
                   </div>
                   Profile
                 </Link>

@@ -3,13 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 import activation from "./activation.png";
 import Cookie from "js-cookie";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import swal from "sweetalert";
 import {
-  activationByOtp,
   activationByOtpForgotPassword,
   resendForgotPassword,
-  resendLink,
 } from "../../redux/auth/authAction";
 import { isEmail, isMobile } from "../../utility/validate";
 import "./ForgotPasswordCode.scss";
@@ -22,9 +20,8 @@ const ForgotPasswordCode = () => {
   const [input, setInput] = useState("");
 
   const activationOtp = Cookie.get("otp");
-  const token = Cookie.get("forgotToken");
+  const token = Cookie.get("authToken");
 
-  const [activationC, setActivationC] = useState(false);
   const [invalidPass, setInvalidPass] = useState(false);
 
   const [codeSend, setCodeSend] = useState(false);

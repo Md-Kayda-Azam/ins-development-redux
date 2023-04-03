@@ -1,0 +1,114 @@
+.edit-section {
+  width: 100%;
+  height: auto;
+  padding: 20px 28px;
+  .edit-title {
+    width: 100%;
+    span {
+      font-weight: 500;
+      font-size: 25px;
+    }
+  }
+  .edit-area {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    .area-wraper {
+      width: 932px;
+
+      border: 1px solid #ddd;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: row;
+      border-radius: 6px;
+      .edit-header {
+        width: 240px;
+
+        border-right: 1px solid #ddd;
+        .account-center {
+          margin-top: 30px;
+          font-size: 11px;
+          width: 210px;
+          height: 210px;
+          margin-left: 33px;
+          cursor: pointer;
+          .item-p {
+            padding: 3px 0px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: start;
+            gap: 8px;
+            margin-top: 2px;
+            a.p-ss {
+              margin-right: 10px;
+            }
+            a.accCe {
+              font-size: 15px;
+              font-weight: 600;
+              font-family: system-ui;
+              padding: 5px 0px;
+            }
+            a.seeMore {
+              font-size: 13px;
+              color: #009df7;
+              font-weight: 500;
+              margin-top: 5px;
+            }
+          }
+        }
+        .divider {
+          border-top: 1px solid #ddd;
+          width: 100%;
+          margin-top: 22px;
+        }
+        ul {
+          width: 100%;
+          height: 100%;
+          li {
+            width: 100%;
+            cursor: pointer;
+            position: relative;
+            .seeas {
+              position: absolute;
+              height: 100%;
+              width: 100%;
+              transform: translate(-35px, -15px);
+              &:hover {
+                border-left: 2px solid #ddd;
+                overflow: hidden;
+              }
+            }
+            a {
+              font-size: 13px;
+              border-left: 2px solid transparent !important;
+              height: inherit;
+              line-height: 20px;
+              display: flex;
+              gap: 5px;
+              border-radius: 5px;
+              cursor: pointer;
+              padding: 10px 0px;
+              font-family: inherit;
+              width: 100%;
+              padding-left: 30px;
+            }
+            a.switch-ss {
+              font-size: 11px;
+              color: #24acf2;
+              font-weight: 500;
+            }
+          }
+        }
+      }
+      .edit-body {
+        width: 694px;
+        padding: 10px;
+        font-size: 10px;
+      }
+    }
+  }
+}

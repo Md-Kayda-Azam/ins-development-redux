@@ -1,12 +1,21 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import { userLogout } from "../../../redux/auth/authAction";
 
 const HeaderMore = ({ close }) => {
+  const dispatch = useDispatch();
+
+  const handleLogOut = () => {
+    dispatch(userLogout());
+  };
+
   return (
     <>
       <div className="header-more" ref={close}>
         <div className="more-wraper">
-          <ul>
-            <li>
+          <div className="ul">
+            <Link to="/accounts/edit">
               <p>Settings</p>
               <svg
                 aria-label="Settings"
@@ -36,8 +45,8 @@ const HeaderMore = ({ close }) => {
                   stroke-width="2"
                 ></path>
               </svg>
-            </li>
-            <li>
+            </Link>
+            <Link>
               <p>Saved</p>
               <svg
                 aria-label="Saved"
@@ -58,8 +67,8 @@ const HeaderMore = ({ close }) => {
                   stroke-width="2"
                 ></polygon>
               </svg>
-            </li>
-            <li>
+            </Link>
+            <Link>
               <p>Switch appearance</p>
               <svg
                 aria-label="Theme icon"
@@ -76,8 +85,8 @@ const HeaderMore = ({ close }) => {
                   fill="currentColor"
                 ></path>
               </svg>
-            </li>
-            <li>
+            </Link>
+            <Link>
               <p>Your activity</p>
               <svg
                 aria-label="Your activity"
@@ -110,8 +119,8 @@ const HeaderMore = ({ close }) => {
                 <circle cx="1.636" cy="10.353" r="1.125"></circle>
                 <circle cx="2.01" cy="15.235" r="1.125"></circle>
               </svg>
-            </li>
-            <li>
+            </Link>
+            <Link>
               <p>Report a problem</p>
               <svg
                 aria-label="Report a problem"
@@ -125,14 +134,14 @@ const HeaderMore = ({ close }) => {
               >
                 <path d="M18.001 1h-12a5.006 5.006 0 0 0-5 5v9.005a5.006 5.006 0 0 0 5 5h2.514l2.789 2.712a1 1 0 0 0 1.394 0l2.787-2.712h2.516a5.006 5.006 0 0 0 5-5V6a5.006 5.006 0 0 0-5-5Zm3 14.005a3.003 3.003 0 0 1-3 3h-2.936a1 1 0 0 0-.79.387l-2.274 2.212-2.276-2.212a1 1 0 0 0-.79-.387H6a3.003 3.003 0 0 1-3-3V6a3.003 3.003 0 0 1 3-3h12a3.003 3.003 0 0 1 3 3Zm-9-1.66a1.229 1.229 0 1 0 1.228 1.228A1.23 1.23 0 0 0 12 13.344Zm0-8.117a1.274 1.274 0 0 0-.933.396 1.108 1.108 0 0 0-.3.838l.347 4.861a.892.892 0 0 0 1.77 0l.348-4.86a1.106 1.106 0 0 0-.3-.838A1.272 1.272 0 0 0 12 5.228Z"></path>
               </svg>
-            </li>
-            <li>
+            </Link>
+            <Link>
               <p>Switch accounts</p>
-            </li>
-            <li>
-              <p>Log out</p>
-            </li>
-          </ul>
+            </Link>
+            <Link>
+              <button onClick={handleLogOut}>Log out</button>
+            </Link>
+          </div>
         </div>
       </div>
     </>

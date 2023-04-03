@@ -1,21 +1,22 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import Avatar from "../../components/Avatar/Avatar";
 import "./Profile.scss";
 
 const Profile = () => {
+  const { user } = useSelector((state) => state.ins_auth);
+
   return (
     <>
       <div className="ins-profile">
         <div className="ins-profile-wraper">
           <div className="profile-header">
             <div className="profile-img">
-              <img
-                src="https://static-01.daraz.com.bd/p/00de30fbbfa1b3282d6609c3a6932e9b.jpg"
-                alt=""
-              />
+              <Avatar />
             </div>
             <div className="profile-info">
               <div className="info-item">
-                <span>mdkaydaazam</span>
+                <span>{user.username}</span>
                 <button className="edit-btn">Edit profile</button>
                 <div className="setting">
                   <svg
@@ -60,7 +61,7 @@ const Profile = () => {
                 </p>
               </div>
               <div className="info-item-name">
-                <p>Md Kayda Azam</p>
+                <p>{user.full_name}</p>
               </div>
             </div>
           </div>

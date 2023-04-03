@@ -11,6 +11,8 @@ import {
   resendActivation,
   resendForgotPassword,
   activateAccountByCodeForgotPassword,
+  signupCheckAddress,
+  signupCheckUsername,
 } from "../controllers/userController.js";
 
 /// init routers
@@ -19,6 +21,8 @@ const router = express.Router();
 // user auth router
 router.post("/login", login);
 router.post("/signup", signupIns);
+router.post("/signup-check-address", signupCheckAddress);
+router.post("/signup-check-username", signupCheckUsername);
 router.get("/me", loggedInUser);
 router.post("/code-activate/", activateAccountByCode);
 router.post(

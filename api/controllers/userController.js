@@ -138,6 +138,67 @@ export const signupIns = async (req, res, next) => {
 };
 
 /**
+ * Sign up check Adress
+ * @param {*} req
+ * @param {*} res
+ * @param {*} next
+ */
+export const signupCheckAddress = async (req, res, next) => {
+  try {
+    const { auth } = req.body;
+
+    if (isEmail(auth)) {
+      const data = await User.findOne({ email: auth });
+      if (data) {
+        res.status(200).json({
+          message: "Already user email active!",
+          email: auth,
+        });
+      }
+    } else if (isMobile(auth)) {
+      const data = await User.findOne({ mobile: auth });
+      if (data) {
+        res.status(200).json({
+          message: "Already user mobile active!",
+          email: auth,
+        });
+      }
+    } else {
+      res.status(200).json({
+        message: "Invalid",
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+/**
+ * Sign up check username
+ * @param {*} req
+ * @param {*} res
+ * @param {*} next
+ */
+export const signupCheckUsername = async (req, res, next) => {
+  try {
+    const { auth } = req.body;
+    if (isUsername(auth)) {
+      const data = await User.findOne({ username: auth });
+      if (data) {
+        res.status(200).json({
+          message: "Already username active!",
+        });
+      }
+    } else {
+      res.status(200).json({
+        message: "Invalid",
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
+/**
  * @access public
  * @route /api/user/login
  * @method post
@@ -218,18 +279,18 @@ export const loggedInUser = async (req, res, next) => {
     const auth_token = req.headers.authorization;
 
     if (!auth_token) {
-      next(createError(400, "Token not found"));
+      return next(createError(400, "Token not found"));
     } else {
       const token = auth_token.split(" ")[1];
       const user = tokenVerify(token);
 
       if (!user) {
-        next(createError(400, "Invalid Token"));
+        return next(createError(400, "Invalid Token"));
       } else {
         const loggedInUser = await User.findById(user.id);
 
         if (!loggedInUser) {
-          next(createError(400, "User data not found"));
+          return next(createError(400, "User data not found"));
         } else {
           res.status(200).json({
             message: "User data Stable",
@@ -298,9 +359,11 @@ export const activateAccountByCodeForgotPassword = async (req, res, next) => {
       await User.findByIdAndUpdate(user.id, {
         access_token: "",
       });
-
+      // send respone
+      const token = createToken({ id: user._id }, "365d");
       res.status(200).json({
         message: "User account activation successful",
+        token: token,
       });
     }
   } catch (error) {
@@ -644,10 +707,12 @@ export const forgotPassword = async (req, res, next) => {
             process.env.APP_URL + ":" + process.env.SERVER_PORT_PASSWORD
           }/account-password-change/${passwordResetToken}`,
         });
-
+        // send respone
+        const token = createToken({ id: data._id }, "365d");
         // send respone
         res.status(200).json({
           message: "A password reset link has send to your password",
+          email: data.email,
         });
       }
     } else if (isMobile(auth)) {
@@ -675,10 +740,57 @@ export const forgotPassword = async (req, res, next) => {
           .cookie("otp", updated_user.mobile, {
             expires: new Date(Date.now() + 1000 * 60 * 15),
           })
-          .cookie("forgotToken", token)
           .json({
             message: "Forgot password",
             user: data,
+            mobile: updated_user.mobile,
+          });
+      }
+    } else if (isUsername(auth)) {
+      const data = await User.findOne({ username: auth });
+
+      // const data = datau.email;
+      if (data.email) {
+        //  create activation token
+        const loginAsAccountToken = createToken({ id: data._id }, "30d");
+        // create activation token
+        const passwordResetToken = createToken({ id: data._id }, "30d");
+        sentForgotPasswordLink(data.email, {
+          name: data.username,
+          email: data.email,
+          loginAsAccountLink: `${
+            process.env.APP_URL + ":" + process.env.SERVER_PORT_PASSWORD
+          }/account/recovery/${loginAsAccountToken}`,
+          resetPassowrdLink: `${
+            process.env.APP_URL + ":" + process.env.SERVER_PORT_PASSWORD
+          }/account-password-change/${passwordResetToken}`,
+        });
+
+        // send respone
+        res.status(200).json({
+          message: "A password reset link has send to your password",
+          email: data.email,
+        });
+      } else if (data.mobile) {
+        //    verify activation code
+        let activationcode = getRandom(100000, 995999);
+        const updated_user = await User.findByIdAndUpdate(data._id, {
+          access_token: activationcode,
+        });
+        sendOTP(
+          updated_user.mobile,
+          `Hi ${updated_user.full_name} ${updated_user.username}, Your account activation OTP is ${activationcode})`
+        );
+
+        res
+          .status(200)
+          .cookie("otp", updated_user.mobile, {
+            expires: new Date(Date.now() + 1000 * 60 * 15),
+          })
+          .json({
+            message: "Forgot password",
+            user: data,
+            mobile: data.mobile,
           });
       }
     }
@@ -766,9 +878,12 @@ export const passwordResetAction = async (req, res, next) => {
           await User.findByIdAndUpdate(user._id, {
             password: hashPassword(newPassword),
           });
+          // send respone
+          const token = createToken({ id: user._id }, "1d");
 
-          res.status(200).json({
+          res.status(200).cookie("authToken", token).json({
             message: "Password Changed",
+            user: user,
           });
         }
       }

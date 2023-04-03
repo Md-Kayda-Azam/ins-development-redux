@@ -39,5 +39,5 @@ export const isNumber = (number) => {
  * @returns
  */
 export const isUsername = (username) => {
-  return /^[a-zA-Z0-9_-]{3,10}$/.test(username);
+  return /^[a-z0-9_.]+$/.test(username);
 };
